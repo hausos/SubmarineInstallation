@@ -31,6 +31,26 @@ void lightUpPlace(bool Digit1, bool Digit2, bool Digit3, bool Digit4) {
   digitalWrite(D4 , Digit4); 
 }
 
+void lightUpPlaceAccordingToNUMB(int place) {
+  switch (place) {
+    case 1:
+      lightUpPlace(LOW, LOW, LOW, HIGH);
+      break;
+    case 2:
+      lightUpPlace(LOW, LOW, HIGH, LOW);
+      break;
+    case 3:
+      lightUpPlace(LOW, HIGH, LOW, LOW);
+      break;
+    case 4:
+      lightUpPlace(HIGH, LOW, LOW, LOW);
+      break;
+    default:
+      lightUpPlace(LOW, LOW, LOW, LOW);
+      break;
+  }
+}
+
 void chooseNumber(int digit) {
   switch (digit) {
     case 0:
@@ -70,50 +90,34 @@ void chooseNumber(int digit) {
 }
 
 
-int writeTheNumber(int number) {
+int minusSign(int number) {
   
   if (number > 1000 && number < -1000) {
     number = 0;
   }
     chooseNumber(-1);
     if (number < 0) {
-      lightUpPlace(HIGH, LOW, LOW, LOW);
+      //minus
+      lightUpPlaceAccordingToNUMB(4);
       lightUpWithNum(HIGH, HIGH, HIGH, HIGH, HIGH, HIGH, LOW);
       number *= (-1);
     }
     else {
-      lightUpPlace(HIGH, LOW, LOW, LOW);
+      //plus
+      lightUpPlaceAccordingToNUMB(4);
       chooseNumber(-1);
     }
+
+    return number;
+}
     
-    delay(1);
-  
-  
-    //0
+int writeDigit(int number, int digitNum) {
     chooseNumber(-1);
-    lightUpPlace(LOW, LOW, LOW, HIGH);
-    chooseNumber(number % 10);
-    number /= 10;
-    
-    delay(1);
-  
-    //1
-    chooseNumber(-1);
-    lightUpPlace(LOW, LOW, HIGH, LOW);
-    if (number > 0) {
+    lightUpPlaceAccordingToNUMB(digitNum);
+    if ((number > 0) && (digitNum != 0)) {
       chooseNumber(number % 10);
     }
     number /= 10;
-  
-    delay(1);
-  
-    //2
-    chooseNumber(-1);
-    lightUpPlace(LOW, HIGH, LOW, LOW);
-    if (number > 0) {
-      chooseNumber(number % 10);
-    }
-    number /= 10;
-    delay(1);
-  
+
+    return number;
 }

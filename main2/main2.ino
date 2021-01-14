@@ -27,6 +27,11 @@ int D2 = 6;
 int D3 = 5;
 int D4 = 7;
 
+unsigned long myTime = 0;
+int orderOfExecution = 0;
+int NUMBER = -120;
+int number = NUMBER;
+String incomingString;
 
 void setup() {
   SetupDisplay();
@@ -37,9 +42,34 @@ void setup() {
 
 
 void loop() {
-  int number = 120;
-  
-  writeTheNumber(number);
+  if (Serial.available() > 0) {
+    incomingString = Serial.readStringUntil('\n');
+    NUMBER = incomingString.toInt();
+  }
+  if (millis() - myTime > 2) {
+    switch (orderOfExecution){
+      case 0:
+        number = minusSign(NUMBER);
+        break;
 
+      case 1:
+        number = writeDigit(number, 1);
+        break;
+        
+      case 2:
+        number = writeDigit(number, 2);
+        break;
+      case 3:
+        number = writeDigit(number, 3);
+        break;
+    }
+    if (orderOfExecution < 3) {
+      orderOfExecution++;
+    }
+    else {
+      orderOfExecution = 0;
+    }
 
+    myTime = millis();
+  }
 }
