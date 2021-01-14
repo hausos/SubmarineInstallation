@@ -15,25 +15,42 @@ void LCD_Setup() {
   lcd.backlight();
 }
 
-void DisplayMessage() {
-  //wait for a second
-  delay(1000);
-  // tell the screen to write on the top row
+void DisplayScanningMessage() {
+  lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("Hello, From");
-  // tell the screen to write on the bottom row
+  lcd.print("Scanning");
   lcd.setCursor(0,1);
-  // you can change whats in the quotes to be what you want it to be!
-  lcd.print("Aurora ");
+  lcd.print("object ...");
+}
 
-  //wait for a second
-  delay(1000);
-  // tell the screen to write on the top row
+void DisplayObjectDetectedMessage() {
+  lcd.clear();
   lcd.setCursor(0,0);
-  lcd.print("Ow you look fabulous");
-  // tell the screen to write on the bottom row
+  lcd.print("Plastic bag");
+}
+
+void DisplayObjectDetectedMessage2() {
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Plastic");
   lcd.setCursor(0,1);
-  // you can change whats in the quotes to be what you want it to be!
-  lcd.print("Excelent ");
-  
+  lcd.print("particles");
+}
+
+void ScanYourObject() {
+  lcd.clear();
+  lcd.setCursor(0,0);
+  lcd.print("Scan your");
+  lcd.setCursor(0,1);
+  lcd.print("object");
+}
+
+void DisplayNotTheObject() {
+  lcd.setCursor(0,1);
+  lcd.print("Not it");
+}
+
+void DisplayYouFoundIt() {
+  lcd.setCursor(0,1);
+  lcd.print("Found it");
 }
