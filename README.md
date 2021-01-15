@@ -21,7 +21,7 @@ To upload code to the Microcontroller, download Arduino and choose the appropria
 
 Description: This code listens for a value named "PLA" when the value is recieved the light lights up and the user is able to scan a tag with the NFC reader. The recognized item is displayed on the LCD display and an appropriate number is sent through the serial port.
 
-![Main1](pictures/main1.JPG)
+![Main1](/pictures/main1.JPG)
 
 The code to upload the code to the NFC tag is in `write_nfc`.
 
@@ -44,4 +44,4 @@ Connect the wires as you wish to digital input pins and modify the code so that 
 - pin 11 - A
 - pin 12 - D1
 
-![Main2](pictures/main2.JPG)
+![Main2](/pictures/main2.JPG)
